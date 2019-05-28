@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>contentEditable Firefox Fix</title>
+  <style type="text/css">
+    body {
+      width: 850px;
+      padding-left: 25px;
+    }
+    .bad {
+      border: 1px solid lightcoral;
+      padding: 10px 30px;
+    }
+
+    .good {
+      border: 1px solid lightgreen;
+      padding: 10px 30px;
+    }
+
+    .code {
+      border: 1px solid lightslategray;
+      padding: 10px 30px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <br />
+  <h1><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable" ><code>contentEditable</code></a> keyboard shortcuts do not work in <a href="https://www.mozilla.org/en-US/firefox/" >Firefox</a>.</h1>
+  <br />
+
+  <h3>Default Behaviour</h3>
+  <div contentEditable="true" class="bad">
+    <div>
+      <h4>The contend within this <code>&lt;div&gt;</code> is editable</h4>
+      <p>Select this text, and make it <strong>bold</strong> with <code>Ctrl + B</code></p>
+      <p>Select this text, and make it <em>italics</em> with <code>Ctrl + I</code></p>
+      <p>Select this text, and make it <u>underlined</u> with <code>Ctrl + U</code></p>
+    </div>
+  </div>
+  
+  <br />
+  <h3>Desired Behaviour</h3>
+  <div contentEditable="true" class="good" id="editor">
+    <div>
+      <h4>The contend within this <code>&lt;div&gt;</code> is editable</h4>
+      <p>Select this text, and make it <strong>bold</strong> with <code>Ctrl + B</code></p>
+      <p>Select this text, and make it <em>italics</em> with <code>Ctrl + I</code></p>
+      <p>Select this text, and make it <u>underlined</u> with <code>Ctrl + U</code></p>
+    </div>
+  </div>
+
+  <br />
+  <h3>JavaScript Solution</h3>
+  <div class="code" >
+  <pre>
+  <code lang="javascript" >const handleKeydown = (e) => {
+  const key = e.key;
+  const ctrl = e.ctrlKey;
+  const meta = e.metaKey;
+
+  if (ctrl || meta) {
+    switch (key) {
+      case 'b':
+        e.preventDefault();
+        document.execCommand("bold");
+        break;
+      case 'i':
+        e.preventDefault();
+        document.execCommand("italic");
+        break;
+      case 'u':
+        e.preventDefault();
+        document.execCommand("underline");
+        break;
+    }
+  }
+};</code>
+</pre>
+</div>
+  <script>
+    const handleKeydown = (e) => {
+      const key = e.key;
+      const ctrl = e.ctrlKey;
+      const meta = e.metaKey;
+
+      if (ctrl || meta) {
+        switch (key) {
+          case 'b':
+            e.preventDefault();
+            document.execCommand("bold");
+            break;
+          case 'i':
+            e.preventDefault();
+            document.execCommand("italic");
+            break;
+          case 'u':
+            e.preventDefault();
+            document.execCommand("underline");
+            break;
+        }
+      }
+    };
+
+    document.querySelector('#editor').addEventListener('keydown', handleKeydown);
+  </script>
+  <br />
+  <br />
+
+
+</body>
+
+</html>
