@@ -1,5 +1,4 @@
 deploy:
   provider: surge
-  project: ./
   domain: firefox-content-editable.surge.sh
   on: master
