@@ -1,12 +1,10 @@
 language: 
-  node_js
-node_js:
-  - node
+  bash
 branches:
   only:
     - master
 install: true
-script: npm -version
+script: echo no need to build
 deploy:
   provider: surge
   on: master
