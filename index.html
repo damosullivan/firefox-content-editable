@@ -21,10 +21,16 @@
 
     .code {
       border: 1px solid lightslategray;
-      padding: 10px 30px;
+      padding: 0px;
+    }
+
+    .code .language-javascript {
+      margin: 0px;
+      background: inherit;
     }
 
   </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.16.0/themes/prism.css">
 </head>
 
 <body>
@@ -57,7 +63,7 @@
   <h3>JavaScript Solution</h3>
   <div class="code" >
   <pre>
-  <code lang="javascript" >
+  <code class="language-javascript" lang="javascript" >
 const handleKeydown = (e) => {
   const key = e.key;
   const ctrl = e.ctrlKey;
@@ -111,6 +117,7 @@ const handleKeydown = (e) => {
   <br />
   <br />
 
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.16.0/prism.min.js"></script>
 
 </body>
 
