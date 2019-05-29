@@ -1,10 +1,7 @@
-language: 
-  bash
+language: minimal
 branches:
   only:
     - master
-install: true
-script: echo no need to build
 deploy:
   provider: surge
   on: master
