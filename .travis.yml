@@ -6,7 +6,7 @@ branches:
   only:
     - master
 install: true
-build: true
+script: npm -version
 deploy:
   provider: surge
   on: master
